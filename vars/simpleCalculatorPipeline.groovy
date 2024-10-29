@@ -3,7 +3,7 @@ def call() {
     pipeline {
         agent any
         environment {
-            DOCKER_IMAGE = 'calculator:latest'
+            DOCKER_IMAGE = 'web-calculator:latest'
             REPO_URL = 'https://github.com/RaamHorakeri/simple-calculator.git'
         }
         stages {
