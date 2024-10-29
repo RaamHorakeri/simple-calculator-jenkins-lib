@@ -13,13 +13,19 @@ def call() {
                 }
             }
 
-            stage('Build Docker Image') {
-                steps {
-                    script {
-                        docker.build("${DOCKER_IMAGE}")
-                    }
-                }
+stage('Build Docker Image') {
+    steps {
+        script {
+            try {
+                docker.build("${DOCKER_IMAGE}")
+            } catch (Exception e) {
+                echo "Docker build failed: ${e.getMessage()}"
+                throw e
             }
+        }
+    }
+}
+
 
             // stage('Run Tests') {
             //     steps {
