@@ -9,7 +9,7 @@ def call() {
         stages {
             stage('Checkout') {
                 steps {
-                    git branch: 'main', url: '${REPO_URL}'
+                    git branch: 'main', url: REPO_URL
                 }
             }
 
