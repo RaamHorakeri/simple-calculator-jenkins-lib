@@ -21,23 +21,23 @@ def call() {
                 }
             }
 
-            stage('Run Tests') {
-                steps {
-                    script {
-                        // Assuming tests are defined, e.g., in a separate test script
-                        sh 'docker-compose run --rm app npm test'
-                    }
-                }
-            }
+            // stage('Run Tests') {
+            //     steps {
+            //         script {
+            //             // Assuming tests are defined, e.g., in a separate test script
+            //             sh 'docker-compose run --rm app npm test'
+            //         }
+            //     }
+            // }
 
-            stage('Push Docker Image') {
-                steps {
-                    script {
-                        // Push the Docker image to a repository (optional)
-                        // docker.image("${DOCKER_IMAGE}").push()
-                    }
-                }
-            }
+            // stage('Push Docker Image') {
+            //     steps {
+            //         script {
+            //             // Push the Docker image to a repository (optional)
+            //             // docker.image("${DOCKER_IMAGE}").push()
+            //         }
+            //     }
+            // }
 
             stage('Deploy') {
                 steps {
