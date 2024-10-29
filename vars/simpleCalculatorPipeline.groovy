@@ -13,34 +13,34 @@ def call() {
                 }
             }
 
-stage('Build Docker Image') {
-    steps {
-        script {
-            try {
-                docker.build("${DOCKER_IMAGE}")
-            } catch (Exception e) {
-                echo "Docker build failed: ${e.getMessage()}"
-                throw e
+            stage('Build Docker Image') {
+                steps {
+                    script {
+                        try {
+                            // Ensure Docker Pipeline Plugin is installed or use `sh` command instead
+                            docker.build(DOCKER_IMAGE)
+                        } catch (Exception e) {
+                            echo "Docker build failed: ${e.getMessage()}"
+                            throw e
+                        }
+                    }
+                }
             }
-        }
-    }
-}
 
-
+            // Uncomment and configure as needed to run tests
             // stage('Run Tests') {
             //     steps {
             //         script {
-            //             // Assuming tests are defined, e.g., in a separate test script
             //             sh 'docker-compose run --rm app npm test'
             //         }
             //     }
             // }
 
+            // Uncomment if pushing the image to a registry
             // stage('Push Docker Image') {
             //     steps {
             //         script {
-            //             // Push the Docker image to a repository (optional)
-            //             // docker.image("${DOCKER_IMAGE}").push()
+            //             docker.image(DOCKER_IMAGE).push()
             //         }
             //     }
             // }
@@ -48,7 +48,7 @@ stage('Build Docker Image') {
             stage('Deploy') {
                 steps {
                     script {
-                        sh 'docker-compose up -d'
+                        sh 'docker compose up -d'
                     }
                 }
             }
